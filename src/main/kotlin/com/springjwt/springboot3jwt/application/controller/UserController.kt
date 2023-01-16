@@ -2,7 +2,6 @@ package com.springjwt.springboot3jwt.application.controller
 
 import com.springjwt.springboot3jwt.adapter.repository.UserRepository
 import com.springjwt.springboot3jwt.domain.entity.User
-import com.sun.tools.javac.comp.Todo
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -18,14 +17,14 @@ import reactor.core.publisher.Mono
 @RequestMapping("/user")
 class UserController(private val userRepository: UserRepository) {
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createTodo(@RequestBody user: User): Mono<User> {
+    fun createUser(@RequestBody user: User): Mono<User> {
         return userRepository.save(user)
     }
 
-    @GetMapping("/")
-    fun getTodos(): Flux<User?>? {
+    @GetMapping
+    fun findAll(): Flux<User?>? {
         return userRepository.findAll()
     }
 }

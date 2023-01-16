@@ -1,8 +1,4 @@
-CREATE DATABASE auth;
-
-CREATE SCHEMA login
-
-CREATE TABLE login.user
+CREATE TABLE IF NOT EXISTS "user"
 (
     id   SERIAL PRIMARY KEY,
     email VARCHAR NOT NULL,
