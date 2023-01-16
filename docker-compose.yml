@@ -1,17 +1,18 @@
 version: '3'
 
 services:
-  # MySQL
-  db_mysql8:
-    container_name: mysql_spring_auth
+  db-postgres:
+    container_name: postgre_spring_auth
     restart: 'always'
-    image: mysql:8.0.31
-    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    image: postgres
+    volumes:
+      - ./docker/sql:/docker-entrypoint-initdb.d/
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: auth
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "auth"
     ports:
-      - '3306:3306'
+      - "5432:5432"
 
 volumes:
   db_data: { }
