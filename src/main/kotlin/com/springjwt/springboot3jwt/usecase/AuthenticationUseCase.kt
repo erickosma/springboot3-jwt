@@ -2,9 +2,9 @@ package com.springjwt.springboot3jwt.usecase
 
 import com.springjwt.springboot3jwt.adapter.repository.UserRepository
 import com.springjwt.springboot3jwt.adapter.service.TokenService
+import com.springjwt.springboot3jwt.domain.dto.AuthUser
 import com.springjwt.springboot3jwt.domain.exception.InvalidLoginException
 import com.springjwt.springboot3jwt.domain.request.LoginUser
-import io.jsonwebtoken.JwtBuilder
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import reactor.core.publisher.Mono.error
@@ -25,5 +25,9 @@ class AuthenticationUseCase(
                 error(InvalidLoginException("Email or password invalid"))
             }
         }
+    }
+
+    fun decode(token: String): AuthUser? {
+        return tokenService.decode(token)
     }
 }
